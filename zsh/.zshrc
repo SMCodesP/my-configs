@@ -2,13 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="/home/smcodes/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -98,35 +98,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-export KOMODO="/root/Komodo-IDE-12/bin:$PATH"
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
-
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-### End of Zinit's installer chunk
-
-zinit light zdharma/fast-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
-fpath=($fpath "/home/smcodes/.zfunctions")
-
-  # Set Spaceship ZSH as a prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
-
-
 SPACESHIP_PROMPT_ORDER=(
   node
   user          # Username section
@@ -146,3 +117,43 @@ SPACESHIP_PROMPT_ADD_NEWLINE=true
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
+### Export nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
+export ANDROID_HOME=~/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:~/android-studio/bin
+export GOOGLE_APPLICATION_CREDENTIALS="/home/smcodes/Documentos/redeheroes-smcodes.json"
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+
+### End of Zinit's installer chunk
+
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+fpath=($fpath "/home/smcodes/.zfunctions")
