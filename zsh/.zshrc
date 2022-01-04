@@ -28,27 +28,28 @@ SPACESHIP_NODE_SYMBOL="⬢ "
 SPACESHIP_NODE_COLOR="green"
 SPACESHIP_NODE_SHOW=true
 
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
-export ANDROID_HOME=~/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:~/android-studio/bin
-export GOOGLE_APPLICATION_CREDENTIALS="/home/smcodes/Documentos/redeheroes-smcodes.json"
-
-export NVM_DIR="$HOME/.nvm"
-export PATH="$NVM_DIR/versions/node/$(<$NVM_DIR/alias/default)/bin:$PATH"
 
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
 source "$HOME/.zinit/bin/zinit.zsh"
 
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export ANDROID_HOME=$HOME/android
+export PATH=$ANDROID_HOME/cmdline-tools/tools/bin/:$PATH
+export PATH=$ANDROID_HOME/emulator/:$PATH
+export PATH=$ANDROID_HOME/platform-tools/:$PATH
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
