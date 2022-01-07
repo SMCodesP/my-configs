@@ -46,7 +46,6 @@ zinit light zsh-users/zsh-autosuggestions
 
 . $HOME/.asdf/completions/asdf.bash
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export ANDROID_HOME=$HOME/android
 export PATH=$ANDROID_HOME/cmdline-tools/tools/bin/:$PATH
 export PATH=$ANDROID_HOME/emulator/:$PATH
